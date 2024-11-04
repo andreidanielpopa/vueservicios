@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import Global from "./../Global";
+import ServiceCoches from "./../services/ServiceCoches";
+const service = new ServiceCoches();
 export default {
   name: "CocheComponent",
   data() {
@@ -20,11 +20,8 @@ export default {
     };
   },
   mounted() {
-    let request = "webresources/coches";
-    let url = Global.urlApiCoches + request;
-
-    axios.get(url).then((response) => {
-      this.coches = response.data;
+    service.getCoches().then((result) => {
+      this.coches = result;
     });
   },
 };
